@@ -13,7 +13,7 @@ An AI-powered grammar correction and rewriting tool using **Google Gemini API**,
 
 ### 📦 Tech Stack
 
-- Angular 17 + Tailwind CSS (Frontend)
+- Angular 16 + Tailwind CSS (Frontend)
 - Netlify Functions (Serverless backend)
 - Gemini 2.5 API (`gemini-2.5-flash` or `flash-lite`)
 
@@ -23,6 +23,6 @@ An AI-powered grammar correction and rewriting tool using **Google Gemini API**,
 
 1. **Clone this repo**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/grammar-rewriter-ai.git
+   git clone https://github.com/DhavalCK/grammar-rewriter-ai.git
    cd grammar-rewriter-ai
    ```

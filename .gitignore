@@ -1,21 +1,23 @@
-# Angular specific
-/dist/
-/out-tsc/
-/tmp/
-/coverage/
-/e2e/test-output/
-/.angular/
-.angular/
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
 # Node modules and dependency files
-/node_modules/
+/node_modules
 /package-lock.json
 /yarn.lock
+npm-debug.log
+yarn-error.log
 
 # Environment files
 /.env
 
 # Angular CLI and build artefacts
+/.angular/
 /.angular-cli.json
 /.ng/
 
@@ -26,3 +28,44 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Coverage
+/coverage
+/e2e/test-output/
+
+# Miscellaneous
+.sass-cache/
+/connect.lock
+/libpeerconnection.log
+testem.log
+/typings
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Angular specific
+/.angular/cache
+.history/*
+
+# Local Netlify folder
+.netlify
+
+# Detail files
+/gemini-key.info
