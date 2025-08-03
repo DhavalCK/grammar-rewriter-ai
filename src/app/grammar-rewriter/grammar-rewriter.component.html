@@ -1,0 +1,124 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300"
+>
+  <!-- Dark/Light Toggle Button -->
+  <div class="flex justify-end px-6 py-4">
+    <button
+      (click)="toggleTheme()"
+      class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-full px-4 py-2 text-sm font-medium shadow hover:scale-105 transition-all"
+    >
+      {{ isDarkMode ? "☀️ Light" : "🌙 Dark" }}
+    </button>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="max-w-4xl mx-auto px-6 pb-12">
+    <h2
+      class="text-4xl font-extrabold text-center mb-8 text-blue-700 dark:text-blue-300"
+    >
+      ✨ Grammar Rewriter AI
+    </h2>
+
+    <!-- Textarea -->
+    <textarea
+      [(ngModel)]="inputText"
+      class="w-full h-60 p-5 rounded-2xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 border-2 border-blue-300 dark:border-blue-600 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-400 dark:focus:ring-blue-500 focus:border-blue-600 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
+      placeholder="✍️ Paste your sentence or paragraph here..."
+    ></textarea>
+
+    <!-- Validation & Character Count -->
+    <div class="mt-2 text-sm flex justify-between items-center">
+      <span *ngIf="inputText.trim().length < 5" class="text-red-500">
+        ✋ Minimum 5 characters required
+      </span>
+      <span class="text-gray-600 dark:text-gray-400 self-end">
+        {{ inputText.trim().length }} characters
+      </span>
+    </div>
+
+    <!-- Button -->
+    <button
+      (click)="rewriteText()"
+      [disabled]="inputText.trim().length < 5 || isLoading"
+      class="ml-auto my-2 relative flex items-center gap-3 px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 ring-2 ring-offset-2 ring-transparent hover:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gradient-to-r disabled:from-gray-400 disabled:to-gray-500"
+    >
+      <!-- Spinner shown only when loading -->
+      <svg
+        *ngIf="isLoading"
+        class="w-5 h-5 animate-spin text-white"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+        ></path>
+      </svg>
+
+      <!-- Button label -->
+      <span class="tracking-wide">
+        {{ isLoading ? "Rewriting..." : "🔁 Rewrite Grammar" }}
+      </span>
+    </button>
+
+    <!-- Response time -->
+    <div
+      *ngIf="isLoading || rewrittenText"
+      class="text-right ml-auto my-2 text-sm text-emerald-600 dark:text-emerald-300 animate-fade-in"
+    >
+      ⏱️ Time:
+      <span class="font-bold"> {{ liveElapsedTime.toFixed(2) }}s </span>
+    </div>
+
+    <!-- Output -->
+    <div *ngIf="true" class="mt-10">
+      <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-3">
+        ✅ Rewritten Text:
+      </h3>
+
+      <!-- Output Text Block with Copy Icon -->
+      <div
+        class="relative flex flex-row gap-3 items-center justify-between bg-gray-100 dark:bg-gray-700 p-5 rounded-2xl shadow-inner text-gray-800 dark:text-gray-100 whitespace-pre-line border border-gray-300 dark:border-gray-600"
+      >
+        <p>
+          {{ rewrittenText }}
+        </p>
+        <!-- Copy Icon Button -->
+        <button
+          (click)="copyText()"
+          class="p-1 text-gray-600 dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400 transition"
+          title="Copy to clipboard"
+        >
+          <span class="material-icons">content_copy</span>
+        </button>
+      </div>
+
+      <!-- Download & Clear Buttons Aligned Right -->
+      <div class="flex justify-end gap-4 mt-4">
+        <button
+          (click)="downloadText()"
+          class="px-6 py-2 rounded-full bg-gray-600 hover:bg-gray-700 text-white font-semibold shadow"
+        >
+          📥 Download .txt
+        </button>
+
+        <button
+          (click)="clearAll()"
+          class="px-6 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold shadow"
+        >
+          ❌ Clear
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
