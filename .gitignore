@@ -12,6 +12,7 @@
 /yarn.lock
 npm-debug.log
 yarn-error.log
+netlify/functions/node_modules/
 
 # Environment files
 /.env
